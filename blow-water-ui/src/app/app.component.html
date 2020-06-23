@@ -1,0 +1,24 @@
+<div *ngIf="page == 'setup'">
+    <div>Please enter the room name</div>
+    <input type="text" [(ngModel)]="room" (keydown.enter)="join()" />
+</div>
+
+<div *ngIf="page == 'room'">
+    <div class="video-panel" [style.grid-template-columns]="videoColumns">
+        <div *ngFor="let video of videos | keyvalue">
+            <video (loadedmetadata)="playVideo($event, video.key)" [srcObject]="video.value"></video>
+            <span>{{video.key}}</span>
+        </div>
+    </div>
+    <div class="info-panel">
+        Room {{room}}
+    </div>
+    <div class="message-panel">
+        <div class="message-list">
+            <div *ngFor="let message of messages"><span>{{message}}</span></div>
+        </div>
+        <div class="message-input">
+            <input type="text" [(ngModel)]="input" (keydown.enter)="send()" placeholder="Message..." />
+        </div>
+    </div>
+</div>

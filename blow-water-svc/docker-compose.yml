@@ -1,0 +1,13 @@
+version: "3.8"
+services: 
+    coturn:
+        image: boldt/coturn
+        ports:
+            - 3478:3478
+            - 3478:3478/udp
+            - 40000-41000:40000-41000/udp
+        environment: 
+            - USERNAME=turn
+            - PASSWORD=turnpass
+            - MIN_PORT=40000
+            - MAX_PORT=41000
